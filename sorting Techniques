@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+  
+  int n; cin>>n; //no of elements in the array
+  vector<int>nums; // creating a dynamic array
+  for(int i=0;i<n;i++){
+    int x;cin>>x;
+    nums.emplace_back(x); // we can use push back also for inserting in the array
+  }
+  //------->bubble sort<--------------
+  for(int i=0;i<n;i++){
+    for(int j=0;j<n-i-1;j++){
+      if(nums[j]>nums[j+1]){
+        swap(nums[j],nums[j+1]);
+      }
+    }
+  }
+  //------>selection sort<-------------------
+  for(int i=0;i<n;i++){
+    int max = nums[i];
+    int key=i;
+    for(int j=i+1;j<n;j++){
+      if(max>nums[j]){
+        max=nums[j];
+        key=j;
+      }
+    }
+    swap(nums[i],nums[key]);
+  }
+  //-------->insertion sort<------------
+  for(int i=1;i<n;i++){
+    int j=i-1;
+    int key=nums[i];
+    while(j>=0 && nums[j]>key){
+      nums[j+1]=nums[j];
+      j--;
+    }
+    nums[j+1]=key;
+  }
+  for(auto x:nums) cout<<x<<" ";
+}
