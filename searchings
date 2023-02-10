@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+  //linear search
+  int n; cin>>n; //no of elements in the array
+  vector<int>nums; // creating a dynamic array
+  for(int i=0;i<n;i++){
+    int x;cin>>x;
+    nums.emplace_back(x); // we can use push back also for inserting in the array
+  }
+  int k; cin>>k; //key that want to search
+  //linear search
+  bool flag = false;
+  for(int i=0;i<n;i++){
+    if(k==nums[i]) {
+      cout<<i<<endl;
+      flag=true;
+      }
+  }
+  // if flag is false , it means element is not founded
+  if(!flag) cout<<"NOT found"<<endl;
+
+ // ----->binary Search-------->
+  sort(nums.begin(),nums.end());
+  flag=false;
+  int s=0,e=n-1;
+  while(s<=e){
+    int mid=s+(e-s)/2; // for mainting the buffer overflow
+    if(nums[mid]==k){
+      flag=true;
+      
+      cout<<mid<<endl;
+      break;
+    }
+    else if(nums[mid]>k) e=mid-1;
+    else s=mid+1;
+  }
+  if(!flag) cout<<"from binary search it not found"<<endl;
+  return 0;
+}
